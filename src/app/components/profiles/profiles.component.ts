@@ -45,6 +45,8 @@ export class ProfilesComponent implements OnInit, OnDestroy {
   getRepos(user: string) {
     this.subscription = this.githubService.getRepos(user).subscribe(result => {
       if (result) {
+        console.log(result);
+
         this.repos = result;
       }
     });

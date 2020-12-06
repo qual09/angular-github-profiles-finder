@@ -47,7 +47,8 @@
       <div *ngFor="let repo of repos" class="card card-body mb-2">
         <div clas="row">
           <div class="col-md-6 mb-1">
-            <a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a>
+            <strong>Owner: </strong> {{repo.owner.login}} <br>
+            <a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a> <br>
           </div>
           <div class="col-md-6">
             <span class="badge badge-primary mb-1 mr-1">Stars: {{repo.stargazers_count}}</span>
