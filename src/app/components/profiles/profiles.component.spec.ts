@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { ProfilesComponent } from './profiles.component';
+import { GithubService } from '../../services/github.service';
 
 describe('ProfilesComponent', () => {
   let component: ProfilesComponent;
@@ -8,9 +11,11 @@ describe('ProfilesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProfilesComponent ]
+      declarations: [ProfilesComponent],
+      imports: [HttpClientModule],
+      providers: [GithubService]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
