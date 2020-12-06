@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 import { Profile } from '../models/profile';
+import { Repository } from '../models/repository';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class GithubService {
   private url: string;
   private token: string;
   private requestOptions: object;
+  private repos_count: number;
+  private repos_sort: string;
 
   constructor(private http: HttpClient) {
     this.url = environment.githubUrl;
@@ -23,6 +26,8 @@ export class GithubService {
         'Authorization': this.token,
       })
     };
+    this.repos_count = environment.repos_count;
+    this.repos_sort = environment.repos_sort;
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -42,8 +47,16 @@ export class GithubService {
   getProfile(user: string): Observable<Profile> {
     const url = `${this.url}/${user}`;
     return this.http.get<Profile>(url, this.requestOptions).pipe(
-      tap(() => console.log('### GithubService ### searchProfile')),
-      catchError(this.handleError<Profile>('searchProfile'))
+      tap(() => console.log('### GithubService ### getProfile')),
+      catchError(this.handleError<Profile>('getProfile'))
+    );
+  }
+
+  getRepos(user: string): Observable<Repository[]> {
+    const url = `${this.url}/${user}/repos?per_page=${this.repos_count}&sort=${this.repos_sort}`;
+    return this.http.get<Repository[]>(url, this.requestOptions).pipe(
+      tap(() => console.log('### GithubService ### getRepos')),
+      catchError(this.handleError<Repository[]>('getRepos', []))
     );
   }
 }

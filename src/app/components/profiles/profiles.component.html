@@ -25,10 +25,10 @@
           <a href="{{profile.html_url}}" target="_blank" class="btn btn-primary btn-block">View Profile</a>
         </div>
         <div class="col-md-9">
-          <span class="badge badge-primary mb-1">Public Repos: {{profile.public_repos}}</span>
-          <span class="badge badge-secondary mb-1">Public Gists: {{profile.public_gists}}</span>
-          <span class="badge badge-success mb-1">Followers: {{profile.followers}}</span>
-          <span class="badge badge-info mb-1">Following: {{profile.following}}</span>
+          <span class="badge badge-primary mb-1 mr-1">Public Repos: {{profile.public_repos}}</span>
+          <span class="badge badge-secondary mb-1 mr-1">Public Gists: {{profile.public_gists}}</span>
+          <span class="badge badge-success mb-1 mr-1">Followers: {{profile.followers}}</span>
+          <span class="badge badge-info mb-1 mr-1">Following: {{profile.following}}</span>
           <br>
           <ul class="list-group mt-1">
             <li class="list-group-item"><strong>Company</strong>: {{profile.company}}</li>
@@ -40,10 +40,23 @@
         </div>
       </div>
     </div>
-    <h3 class="page-heading mb-3">Latest Repos</h3>
 
     <!-- Repos -->
-    <div></div>
+    <ng-container *ngIf="repos">
+      <h3 class="page-heading mb-3">Latest Repos</h3>
+      <div *ngFor="let repo of repos" class="card card-body mb-2">
+        <div clas="row">
+          <div class="col-md-6 mb-1">
+            <a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a>
+          </div>
+          <div class="col-md-6">
+            <span class="badge badge-primary mb-1 mr-1">Stars: {{repo.stargazers_count}}</span>
+            <span class="badge badge-secondary mb-1 mr-1">Watchers: {{repo.watchers_count}}</span>
+            <span class="badge badge-success mb-1 mr-1">Forks: {{repo.forks_count}}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
 
   </div>
 
