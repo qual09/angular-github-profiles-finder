@@ -1,1 +1,50 @@
-<p>profiles works!</p>
+<div class="container">
+
+  <!-- Error message -->
+  <div *ngIf="showError" class="alert alert-danger">
+    User not found
+  </div>
+
+  <!-- Search -->
+  <div class="card card-body mb-4">
+    <h2>Search GitHub Users</h2>
+    <p class="lead">Enter a username to fetch a user profile and repos</p>
+    <div class="input-group">
+      <input [(ngModel)]="username" type="text" class="form-control mr-1" placeholder="GitHub Username...">
+      <input type="button" value="Search" class="btn btn-dark" (click)="getProfile(username)">
+    </div>
+  </div>
+
+  <!-- Profile - can be later moved into another component -->
+  <div *ngIf="profile" class="search card card-body mb-4">
+
+    <div class="card card-body mb-3">
+      <div class="row">
+        <div class="col-md-3 mb-2 text-center">
+          <img class="img-fluid mb-2" src="{{profile.avatar_url}}">
+          <a href="{{profile.html_url}}" target="_blank" class="btn btn-primary btn-block">View Profile</a>
+        </div>
+        <div class="col-md-9">
+          <span class="badge badge-primary mb-1">Public Repos: {{profile.public_repos}}</span>
+          <span class="badge badge-secondary mb-1">Public Gists: {{profile.public_gists}}</span>
+          <span class="badge badge-success mb-1">Followers: {{profile.followers}}</span>
+          <span class="badge badge-info mb-1">Following: {{profile.following}}</span>
+          <br>
+          <ul class="list-group mt-1">
+            <li class="list-group-item"><strong>Company</strong>: {{profile.company}}</li>
+            <li class="list-group-item"><strong>Website/Blog</strong>: <a href="{{profile.blog}}"
+                target="_blank">{{profile.blog}}</a></li>
+            <li class=" list-group-item"><strong>Location</strong>: {{profile.location}}</li>
+            <li class="list-group-item"><strong>Member Since</strong>: {{profile.created_at.substring(0, 10)}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <h3 class="page-heading mb-3">Latest Repos</h3>
+
+    <!-- Repos -->
+    <div></div>
+
+  </div>
+
+</div>
