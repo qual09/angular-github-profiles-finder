@@ -54,20 +54,16 @@ export class ProfilesComponent implements OnInit, OnDestroy {
       if (result) {
         this.repos = result;
         this.repos.forEach(repo => {
-          this.getCommits(repo.name, repo.id);
+          this.getCommits(repo);
         });
       }
     });
   }
 
-  getCommits(repoName: string, id: number) {
-    this.commitsSubscription = this.githubService.getCommits(this.profile.login, repoName).subscribe(result => {
+  getCommits(repo: Repository) {
+    this.commitsSubscription = this.githubService.getCommits(this.profile.login, repo.name).subscribe(result => {
       if (result) {
-        this.repos.forEach(repo => {
-          if (repoName === repo.name && id === repo.id) {
-            repo.latestCommit = result[0].sha;
-          }
-        });
+        repo.latestCommit = result[0].sha;
       }
     });
   }
