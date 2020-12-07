@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve --o",
     "build": "ng build",
+    "build09": "ng build --prod --output-hashing none --base-href /portfolio/angular-github-profiles-finder/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
