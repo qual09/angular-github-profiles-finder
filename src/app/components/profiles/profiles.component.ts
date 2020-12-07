@@ -5,15 +5,12 @@ import { Subscription } from 'rxjs';
 import { Profile } from '../../models/profile';
 import { Repository } from '../../models/repository';
 
-import { environment } from '../../../environments/environment';
-
 @Component({
   selector: 'app-profiles',
   templateUrl: './profiles.component.html',
   styleUrls: ['./profiles.component.scss']
 })
 export class ProfilesComponent implements OnInit, OnDestroy {
-  maxRepos: number = environment.repos_count;
   profileSubscription: Subscription;
   repoSubscription: Subscription;
   commitsSubscription: Subscription;
@@ -56,8 +53,6 @@ export class ProfilesComponent implements OnInit, OnDestroy {
         this.repos.forEach(repo => {
           this.getCommits(repo);
         });
-        // Set display number of max repos
-        this.maxRepos = result.length;
       }
     });
   }

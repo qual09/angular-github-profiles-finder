@@ -43,7 +43,7 @@
 
     <!-- Repos -->
     <ng-container *ngIf="repos">
-      <h3 class="page-heading mb-3">Latest Repos ({{maxRepos}})</h3>
+      <h3 class="page-heading mb-3">Latest Repos ({{repos.length}})</h3>
       <div *ngFor="let repo of repos" class="card card-body mb-2">
         <div clas="row">
           <div class="col-md-6 mb-1">
