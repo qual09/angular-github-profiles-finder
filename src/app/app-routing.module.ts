@@ -5,7 +5,6 @@ import { ProfilesComponent } from './components/profiles/profiles.component';
 const routes: Routes = [
   { path: '', redirectTo: '/profiles', pathMatch: 'full' },
   { path: 'profiles', component: ProfilesComponent },
-  // { path: 'profiles/:id', component: ProfileDetailsComponent },
   { path: '**', component: ProfilesComponent }
 ];
 

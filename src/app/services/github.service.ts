@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Profile } from '../models/profile';
 import { Repository } from '../models/repository';
+import { Commit } from '../models/commit';
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +46,7 @@ export class GithubService {
   }
 
   getProfile(user: string): Observable<Profile> {
-    const url = `${this.url}/${user}`;
+    const url = `${this.url}/users/${user}`;
     return this.http.get<Profile>(url, this.requestOptions).pipe(
       tap(() => console.log('### GithubService ### getProfile')),
       catchError(this.handleError<Profile>('getProfile'))
@@ -53,10 +54,19 @@ export class GithubService {
   }
 
   getRepos(user: string): Observable<Repository[]> {
-    const url = `${this.url}/${user}/repos?per_page=${this.repos_count}&sort=${this.repos_sort}`;
+    const url = `${this.url}/users/${user}/repos?per_page=${this.repos_count}&sort=${this.repos_sort}`;
     return this.http.get<Repository[]>(url, this.requestOptions).pipe(
       tap(() => console.log('### GithubService ### getRepos')),
       catchError(this.handleError<Repository[]>('getRepos', []))
     );
   }
+
+  getCommits(user: string, repo: string): Observable<Commit[]> {
+    const url = `${this.url}/repos/${user}/${repo}/commits`;
+    return this.http.get<Commit[]>(url, this.requestOptions).pipe(
+      tap(() => console.log('### GithubService ### getCommits')),
+      catchError(this.handleError<Commit[]>('getCommits', []))
+    );
+  }
+
 }
