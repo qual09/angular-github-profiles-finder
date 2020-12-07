@@ -56,6 +56,8 @@ export class ProfilesComponent implements OnInit, OnDestroy {
         this.repos.forEach(repo => {
           this.getCommits(repo);
         });
+        // Set display number of max repos
+        this.maxRepos = result.length;
       }
     });
   }
